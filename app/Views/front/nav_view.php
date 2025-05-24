@@ -1,4 +1,3 @@
-<body>
 
 <?php
     $session = session();
@@ -43,9 +42,12 @@
     </ul>
 
     <!-- Texto centrado con el nombre del administrador -->
-    <div class="text-white text-center fw-bold fs-5 mx-auto">
-        Administrador: <?= session('nombre'); ?>
+    <div class="text-secondary text-center fw-bold fs-5 mx-auto font-monospace">
+        ADMINISTRADOR: <?= session('nombre'); ?>
     </div>
+
+
+
 
     <!-- Íconos de la derecha -->
     <div class="d-flex align-items-center position-relative">
@@ -152,27 +154,14 @@
         <li class="nav-item"><a class="nav-link" href="<?php echo base_url('contacto');?>">Contacto</a></li>
         </ul>
 
-                <div class="d-flex align-items-center position-relative">
-            <div class="login-wrapper position-relative me-3">
-                <a href="<?php echo base_url('iniciosesion');?>" class="text-white fs-5">
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
+        
+        <div class="login-wrapper position-relative me-3">
+            <a href="<?php echo base_url('iniciosesion');?>" class="text-white fs-5">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
 
-            <div class="favorites-wrapper position-relative me-3">
-                <a href="<?php echo base_url('favoritos');?>" class="text-white fs-5">
-                    <i class="fas fa-heart"></i>
-                </a>
-            </div>
-
-            <div class="cart-wrapper position-relative">
-                <a href="<?php echo base_url('carrito');?>" class="text-white fs-5">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        3
-                    </span>
-                </a>
-            </div>
+            
         </div>
     </div>
     </div>
