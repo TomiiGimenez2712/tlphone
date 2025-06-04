@@ -145,13 +145,4 @@ class Home extends BaseController
         echo view('front/whatsapp_view');
         echo view('front/footer_view');
     }
-
-    public function administracion()
-    {
-        $data['titulo']='Administración | tlphone';
-        echo view('front/head_view',$data);
-        echo view('front/nav_view');
-        echo view('back/administradores/administracion');
-        echo view('front/footer_view');
-    }
 }
