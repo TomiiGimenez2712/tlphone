@@ -38,26 +38,21 @@ class carrito_controller extends BaseController
 
 
 // Agrega items al carrito
-        public function add()
-        {
-            $cart = \Config\Services::Cart();
-            $request = \Config\Services::request();
+public function add()
+{
+    $cart = \Config\Services::Cart();
+    $request = \Config\Services::request();
 
-            $cart->insert([
-                'id'      => $request->getPost('id'),
-                'qty'     => 1,
-                'name'    => $request->getPost('nombre_prod'),
-                'price'   => $request->getPost('precio_vta'),
-                'options' => [
-                    'imagen' => base_url('assets/uploads/' . $request->getPost('imagen'))
-                ]
-            ]);
+    $cart->insert(array(
+        'id'     => $request->getPost('id'),
+        'qty'    => 1,
+        'name'   => $request->getPost('nombre_prod'),
+        'price'  => $request->getPost('precio_vta'),
+        'imagen' => $request->getPost('imagen'),
+    ));
 
-            return redirect()->back()->withInput();
-        }
-
-
-
+    return redirect()->back()->withInput();
+}
 
 
 // Actualiza el carrito que se muestra
@@ -66,34 +61,16 @@ public function actualiza_carrito()
     $cart = \Config\Services::Cart();
     $request = \Config\Services::request();
 
-    $rowid = $request->getPost('rowid');
-    $accion = $request->getPost('accion');
+    $cart->update(array(
+        'id'     => $request->getPost('id'),
+        'qty'    => 1,
+        'price'  => $request->getPost('precio_vta'),
+        'name'   => $request->getPost('nombre_prod'),
+        'imagen' => $request->getPost('imagen'),
+    ));
 
-    // Obtener el ítem actual del carrito
-    $item = $cart->getItem($rowid);
-    if (!$item) {
-        return redirect()->back()->with('mensaje', 'Ítem no encontrado en el carrito.');
-    }
-
-    $cantidadActual = $item['qty'];
-
-    if ($accion === 'sumar') {
-        $nuevaCantidad = $cantidadActual + 1;
-    } elseif ($accion === 'restar') {
-        $nuevaCantidad = max(1, $cantidadActual - 1); // nunca menos que 1
-    } else {
-        return redirect()->back()->with('mensaje', 'Acción inválida.');
-    }
-
-    // Actualizar
-    $cart->update([
-        'rowid' => $rowid,
-        'qty'   => $nuevaCantidad,
-    ]);
-
-    return redirect()->back()->with('mensaje', 'Cantidad actualizada.');
+    return redirect()->back()->withInput();
 }
-
 
 
 
